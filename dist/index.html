@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Convert Slack to Markdown</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+  <script src="https://unpkg.com/turndown/dist/turndown.js"></script>
+  <style>
+    #output {
+      height: 300px;
+    }
+    .btn-group-center {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+  </style>
+  <script>
+    function cleanHTML() {
+      var dirtyHTML = $('#summernote').summernote('code');
+      var cleanHTML = dirtyHTML.replace(/<div.*?class="p-rich_text_section".*?>/g, '<p>')
+        .replace(/<\/div>/g, '</p>')
+        .replace(/<span(?=[^>]*data-stringify-type="paragraph-break")[^>]*>/g, '<br />')
+        .replace(/(?<=<\/span>)/g, '')
+        .replace(/<div.*?>/g, '<p>')
+        .replace(/<\/div>/g, '</p>')
+        .replace(/<span.*?>/g, '')
+        .replace(/<\/span>/g, '')
+        .replace(/<b\b[^>]*>/g, '<strong>')
+        .replace(/<\/b>/g, '</strong>')
+        .replace(/<i\b[^>]*>/g, '<em>')
+        .replace(/<\/i>/g, '</em>')
+        .replace(/<a.*?href="(.*?)".*?>/g, '<a href="$1">')
+        .replace(/<\/a>/g, '</a>')
+        .replace(/<code.*?>/g, '<code>')
+        .replace(/<\/code>/g, '</code>')
+        .replace(/<pre.*?>/g, '<pre>')
+        .replace(/<\/pre>/g, '</pre>')
+        .replace(/<ul.*?>/g, '<ul>')
+        .replace(/<\/ul>/g, '</ul>')
+        .replace(/<li.*?>/g, '<li>')
+        .replace(/<\/li>/g, '</li>')
+        .replace(/<blockquote.*?>/g, '<blockquote>')
+        .replace(/<\/blockquote>/g, '</blockquote>')
+        .replace(/<br.*?>/g, '<br />');
+
+      // Clean the output HTML
+      var parser = new DOMParser();
+      var doc = parser.parseFromString(cleanHTML, 'text/html');
+      var cleanOutput = doc.body.innerHTML;
+
+      // Remove empty <p></p> tags
+      cleanOutput = cleanOutput.replace(/<p><\/p>/g, '');
+
+      return cleanOutput;
+    }
+
+    function convertToMarkdown() {
+      var cleanOutput = cleanHTML();
+
+      // Create a new Turndown instance
+      var turndownService = new TurndownService();
+
+      // Convert the clean HTML to markdown
+      var markdown = turndownService.turndown(cleanOutput);
+
+      $('#output').val(markdown);
+    }
+
+    function convertToPlaintext() {
+      var cleanOutput = cleanHTML();
+      var plaintext = cleanOutput.replace(/<br \/>/g, '\n')
+        .replace(/<\/p>/g, '\n\n')
+        .replace(/<[^>]+>/g, '')
+        .replace(/&nbsp;/g, ' ');
+
+      $('#output').val(plaintext);
+    }
+
+    $(document).ready(function() {
+      $('#summernote').summernote({
+        placeholder: 'Enter your Slack message here...',
+        tabsize: 2,
+        height: 300,
+        toolbar: [
+        ]
+      });
+
+      var path = window.location.pathname;
+
+if (path === '/markdown') {
+  $('#convert-html').hide();
+  $('#convert-plain-text').hide();
+  $('h1').text('Convert Slack to Markdown');
+  $('#convert-markdown').show();
+  $('#buttons-footer a[href="/html"]').show();
+  $('#buttons-footer a[href="/plaintext"]').show();
+} else if (path === '/html') {
+  $('#convert-markdown').hide();
+  $('#convert-plain-text').hide();
+  $('h1').text('Convert Slack to HTML');
+  $('#convert-html').show();
+  $('#buttons-footer a[href="/html"]').hide();
+  $('#buttons-footer a[href="/markdown"]').show();
+  $('#buttons-footer a[href="/plaintext"]').show();
+} else if (path === '/plaintext') {
+  $('#convert-html').hide();
+  $('#convert-markdown').hide();
+  $('h1').text('Convert Slack to Plaintext');
+  $('#convert-plain-text').show();
+  $('#buttons-footer a[href="/plaintext"]').hide();
+  $('#buttons-footer a[href="/html"]').show();
+  $('#buttons-footer a[href="/markdown"]').show();
+} else {
+  $('#convert-html').show();
+  $('#convert-markdown').show();
+  $('#convert-plain-text').show();
+  $('#buttons-footer a[href="/html"]').show();
+  $('#buttons-footer a[href="/markdown"]').show();
+  $('#buttons-footer a[href="/plaintext"]').show();
+}
+
+      $('#convert-html').click(function() {
+        var cleanOutput = cleanHTML();
+        $('#output').val(cleanOutput);
+      });
+
+      $('#convert-markdown').click(function() {
+        convertToMarkdown();
+      });
+
+      $('#convert-plain-text').click(function() {
+        convertToPlaintext();
+      });
+    });
+  </script>
+</head>
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h1 class="text-center">Convert Slack to HTML, Markdown or Plaintext</h1>
+        <div class="btn-group btn-group-center" id="buttons-header">
+          <button class="btn btn-primary me-2" id="convert-html" style="display: none;">Convert to HTML</button>
+          <button class="btn btn-primary me-2" id="convert-markdown" style="display: none;">Convert to Markdown</button>
+          <button class="btn btn-primary" id="convert-plain-text" style="display: none;">Convert to Plain Text</button>
+        </div>
+        <div class="row mt-4">
+          <div class="col-md-6">
+            <div id="summernote"></div>
+          </div>
+          <div class="col-md-6">
+            <textarea class="form-control" rows="10" id="output"></textarea>
+          </div>
+        </div>
+        <div id="buttons-footer" style="display: flex; flex-wrap: wrap; justify-content: center;">
+            <a href="/html" class="btn btn-primary me-2" style="display: none;">Convert to HTML</a>
+            <a href="/markdown" class="btn btn-primary me-2" style="display: none;">Convert to Markdown</a>
+            <a href="/plaintext" class="btn btn-primary" style="display: none;">Convert to Plain Text</a>
+          </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
