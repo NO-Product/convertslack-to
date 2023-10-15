@@ -1,0 +1,8 @@
+#output {
+    height: 300px;
+  }
+  .btn-group-center {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+  }

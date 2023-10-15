@@ -1,0 +1,40 @@
+{
+  "name": "convertslack-to",
+  "version": "1.0.0",
+  "description": "Simple web tools that convert Slack messages into HTML, markdown and plain text.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack",
+    "start": "webpack serve --open"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NO-Product/convertslack-to.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NO-Product/convertslack-to/issues"
+  },
+  "homepage": "https://github.com/NO-Product/convertslack-to#readme",
+  "dependencies": {
+    "axios": "^1.5.1",
+    "bootstrap": "^3.4.1",
+    "emoji-js": "^3.7.0",
+    "html-webpack-plugin": "^5.5.3",
+    "jquery": "^3.7.1",
+    "mini-css-extract-plugin": "^2.7.6",
+    "summernote": "^0.8.18",
+    "turndown": "^7.1.2"
+  },
+  "devDependencies": {
+    "copy-webpack-plugin": "^11.0.0",
+    "css-loader": "^6.8.1",
+    "html-loader": "^4.2.0",
+    "webpack": "^5.89.0",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^4.15.1"
+  }
+}
