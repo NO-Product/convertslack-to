@@ -14,7 +14,7 @@ fetch('emoji.json')
   .then(response => response.json())
   .then(data => {
     emojiData = data;
-    console.log('Emoji data loaded:', emojiData);
+    // console.log('Emoji data loaded:', emojiData);
   })
   .catch((error) => {
     console.error('Error:', error);
@@ -27,7 +27,7 @@ fetch('emoji.json')
       const emojiUnicode = String.fromCodePoint(...emoji.unified.split('-').map(u => '0x' + u));
       const matchedText = text.match(new RegExp(emojiImageUrlPattern, 'g'));
       if (matchedText) {
-        console.log('Processing emoji:', emojiImageUrlPattern, 'to', emojiUnicode);
+        // console.log('Processing emoji:', emojiImageUrlPattern, 'to', emojiUnicode);
         text = text.replace(new RegExp(emojiImageUrlPattern, 'g'), emojiUnicode);
       }
     });
@@ -36,9 +36,9 @@ fetch('emoji.json')
     const markdownImageSyntaxPattern = /!\[(.*?)\]\(\1\)/g;
     const matchedMarkdownImageSyntax = text.match(markdownImageSyntaxPattern);
     if (matchedMarkdownImageSyntax) {
-      console.log('Before converting Markdown image syntax:', text);
+      // console.log('Before converting Markdown image syntax:', text);
       text = text.replace(markdownImageSyntaxPattern, '$1');
-      console.log('After converting Markdown image syntax:', text);
+      // console.log('After converting Markdown image syntax:', text);
     }
   
     // Modify any remaining <img> tags to retain the value of `src=""` and remove the rest of the tag
