@@ -1,8 +1,36 @@
-#output {
-  height: 300px;
+body {
+  background-color: #F4EDE4 !important; /* Horchata color */
+  color: #1D1C1D; /* Black color for text */
+  font-family: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
+body h1 {
+  color: #4A154B !important; 
+}
+body h3 {
+  color: #1D1C1D !important; 
+}
+
+
 .btn-group-center {
   display: flex;
   justify-content: center;
   margin-bottom: 20px;
+}
+.container {
+  /* background-color: #F4EDE4; Aubergine color for main containers */
+  color: #FFFFFF; /* White color for text on Aubergine background */
+}
+.btn-primary {
+  background-color: #36C5F0 !important; /* Slack Blue color for primary buttons */
+  color: #FFFFFF; /* White color for text on Blue background */
+}
+.btn-primary:hover {
+  background-color: #2A9FD6 !important; /* A shade of blue color for primary button hover */
+  color: #FFFFFF; /* White color for text on Blue background */
+}
+
+#output {
+  height: 300px;
+  background-color: #ffffff;
+  color: #1D1C1D; /* Black color for text */
 }
