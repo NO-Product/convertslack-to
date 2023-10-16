@@ -8,7 +8,7 @@ module.exports = {
   mode: 'production', // or 'development'
   entry: './src/main.js',
   output: {
-    filename: 'bundle.js',
+    filename: 'assets/js/bundle.js',
     path: path.resolve(__dirname, 'dist'),
   },
   stats: {
@@ -27,6 +27,20 @@ module.exports = {
         test: /\.html$/i,
         loader: 'html-loader',
       },
+      {
+        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        type: 'asset/resource',
+        generator: {
+          filename: 'assets/img/[hash][ext][query]',
+        },
+      },
+      {
+        test: /\.(woff|woff2|eot|ttf|otf)$/i,
+        type: 'asset/resource',
+        generator: {
+          filename: 'assets/fonts/[hash][ext][query]',
+        },
+      },
     ],
   },
   plugins: [
@@ -35,12 +49,12 @@ module.exports = {
       filename: './index.html'
     }),
     new MiniCssExtractPlugin({
-      filename: 'styles.css'
+      filename: 'assets/css/styles.css'
     }),
     new CopyPlugin({
       patterns: [
         { from: 'src/.htaccess', to: '' },
-        { from: 'src/emoji.json', to: '' },
+        { from: 'src/emoji.json', to: 'assets/data' },
       ],
     }),
     new webpack.ProvidePlugin({
