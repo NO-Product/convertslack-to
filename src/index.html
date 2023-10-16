@@ -1,36 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Convert Slack to Markdown</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        <h1 class="text-center">Convert Slack to HTML, Markdown or Plaintext</h1>
-        <div class="btn-group btn-group-center" id="buttons-header">
-          <button class="btn btn-primary me-2" id="convert-html" style="display: none;">Convert to HTML</button>
-          <button class="btn btn-primary me-2" id="convert-markdown" style="display: none;">Convert to Markdown</button>
-          <button class="btn btn-primary" id="convert-plain-text" style="display: none;">Convert to Plain Text</button>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Convert Slack to Markdown</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-container">
+      <h1 class="title">
+        Convert Slack to HTML, Markdown or Plaintext
+      </h1>
+      <div class="btn-group" id="buttons-header">
+        <button class="btn" id="convert-html">Convert to HTML</button>
+        <button class="btn" id="convert-markdown">Convert to Markdown</button>
+        <button class="btn" id="convert-plain-text">Convert to Plain Text</button>
+      </div>
+      <div class="content">
+        <div class="input-section">
+          <h3>Paste your Slack messages here</h3>
+          <div id="summernote"></div>
         </div>
-        <div class="row mt-4">
-          <div class="col-md-6">
-            <div id="summernote"></div>
-          </div>
-          <div class="col-md-6">
-            <textarea class="form-control" rows="10" id="output"></textarea>
-          </div>
+        <div class="output-section">
+          <h3>Output</h3>
+          <textarea class="form-control" rows="10" id="output"></textarea>
         </div>
-        <div id="buttons-footer" style="display: flex; flex-wrap: wrap; justify-content: center;">
-            <a href="/html" class="btn btn-primary me-2" style="display: none;">Convert to HTML</a>
-            <a href="/markdown" class="btn btn-primary me-2" style="display: none;">Convert to Markdown</a>
-            <a href="/plaintext" class="btn btn-primary" style="display: none;">Convert to Plain Text</a>
-          </div>
       </div>
     </div>
-  </div>
-</body>
+  </body>
 </html>

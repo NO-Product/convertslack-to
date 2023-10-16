@@ -1,8 +1,57 @@
+body {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* Aligns items to the start of the flex container vertically */
+  align-items: center; /* Aligns items in the center horizontally */
+  background-color: #F4EDE4 !important; /* Horchata color */
+  color: #1D1C1D !important; /* Black color for text */
+  font-family: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  }
+  
+  .app-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80%;
+  margin-top: 20px; /* Adds some space at the top */
+  }  
+
+.title {
+  color: #4A154B; /* Display H1 using #4A154B */
+}
+
+.content {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch; /* Add this line */
+  width: 100%;
+}
+
+.input-section, .output-section {
+  flex: 1;
+  margin: 0 10px; /* Add this line */
+}
+
+.btn-group {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.btn {
+  background-color: #2F8AB7; /* New color for primary buttons */
+  color: #FFFFFF; /* White color for text on new button color */
+  margin: 0 10px;
+}
+
+.btn:hover {
+  background-color: #26799C; /* A darker shade of the new button color for hover */
+  color: #FFFFFF; /* White color for text on hover color */
+}
+
 #output {
-    height: 300px;
-  }
-  .btn-group-center {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 20px;
-  }
+  height: 300px;
+  background-color: #ffffff;
+  color: #1D1C1D; /* Black color for text */
+}
