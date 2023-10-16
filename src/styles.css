@@ -33,6 +33,24 @@ body {
   margin: 0 10px; /* Add this line */
 }
 
+.subtitle {
+  text-align: center;
+  font-size: 1.2em;
+  margin-bottom: 20px;
+}
+
+.description-block {
+  margin-top: 20px;
+  text-align: justify;
+  max-width: 800px;
+  margin: 20px auto;
+}
+
+.centered-footer {
+  text-align: center;
+  margin-top: 40px;
+}
+
 .btn-group {
   display: flex;
   justify-content: center;

@@ -54,6 +54,7 @@ module.exports = {
     new CopyPlugin({
       patterns: [
         { from: "src/.htaccess", to: "" },
+        { from: "src/robots.txt", to: "" },
         { from: "src/emoji.json", to: "assets/data" },
       ],
     }),

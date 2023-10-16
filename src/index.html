@@ -2,30 +2,47 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Convert Slack to Markdown</title>
+    <title>ConvertSlack.to: Transform Slack Messages into Markdown, HTML, or Plain Text</title>
+    <meta name="description" content="ConvertSlack.to is a simple, open-source web tool designed to convert Slack messages into Markdown, HTML, or Plain Text. Ideal for those frequently copying Slack messages into platforms like Github Issues.">
+    <meta name="keywords" content="Slack, Markdown, HTML, Plain Text, Conversion, Github Issues, Open Source, Web Tool">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <div class="app-container">
       <h1 class="title">
-        Convert Slack to HTML, Markdown or Plaintext
+        Welcome to ConvertSlack.to
       </h1>
+      <p class="subtitle">
+        Your go-to tool for transforming Slack messages into Markdown, HTML, or Plain Text.
+      </p>
       <div class="btn-group" id="buttons-header">
         <button class="btn" id="convert-html">Convert to HTML</button>
         <button class="btn" id="convert-markdown">Convert to Markdown</button>
         <button class="btn" id="convert-plain-text">Convert to Plain Text</button>
       </div>
-      <div class="content">
-        <div class="input-section">
-          <h3>Paste your Slack messages here</h3>
-          <div id="summernote"></div>
+      <div class="content-wrapper">
+        <div class="content">
+          <div class="input-section">
+            <h3>Paste your Slack messages here</h3>
+            <div id="summernote"></div>
+          </div>
+          <div class="output-section">
+            <h3>Output</h3>
+            <textarea class="form-control" rows="10" id="output"></textarea>
+          </div>
         </div>
-        <div class="output-section">
-          <h3>Output</h3>
-          <textarea class="form-control" rows="10" id="output"></textarea>
+        <div class="description-block">
+          <p>
+            ConvertSlack.to is designed for anyone who frequently copies Slack messages into platforms like Github Issues, only to find that the original formatting is lost. Simply paste your Slack message into the input box, click the button corresponding to your desired format, and your converted message will appear in the output box, ready to be copied and pasted wherever you need it. Check out our <a href="https://github.com/NO-Product/convertslack-to">Github repository</a> to get started or watch our <a href="https://www.loom.com/share/638db906455e488eb67d0bf596bbf40e?sid=588bbe05-701f-4cf0-983d-5cb8fac072df">demo video</a>.
+          </p>
         </div>
       </div>
+      <footer class="centered-footer">
+        <p>
+          Built by <a href="https://noproduct.co.uk">NO Product</a>
+        </p>
+      </footer>
     </div>
   </body>
 </html>
